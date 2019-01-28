@@ -7,31 +7,34 @@
 
 WindowsTimer::WindowsTimer()
 {
-	begin = GetTickCount();
+	stopped = false;
+	timeBeginPeriod(1);
+	begin = timeGetTime();
 }
 
 WindowsTimer::~WindowsTimer()
 {
+	timeEndPeriod(1);
 	//dtor
 }
 
 void WindowsTimer::start()
 {
 	stopped = false;
-	begin = GetTickCount();
+	begin = timeGetTime();
 }
 
 void WindowsTimer::stop()
 {
 	stopped = true;
-	end = GetTickCount();
+	end = timeGetTime();
 }
 
 int WindowsTimer::get_elt()
 {
 	if(stopped)
 		return end - begin;
-	return GetTickCount() - begin;
+	return timeGetTime() - begin;
 }
 
 #endif
