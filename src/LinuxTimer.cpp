@@ -25,6 +25,14 @@ void LinuxTimer::stop()
 	end = getTime();
 }
 
+void LinuxTimer::Continue()
+{
+	stopped = false;
+	timestruct current = getTime();
+	begin.timesecs += (current.timesecs - end.timesecs);
+	begin.timenanosecs += (current.timenanosecs - end.timenanosecs);
+}
+
 int LinuxTimer::get_elt()
 {
 	if (stopped)

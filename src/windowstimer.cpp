@@ -30,6 +30,12 @@ void WindowsTimer::stop()
 	end = timeGetTime();
 }
 
+void WindowsTimer::Continue()
+{
+	stopped = false;
+	begin += timeGetTime() - end;
+}
+
 int WindowsTimer::get_elt()
 {
 	if(stopped)

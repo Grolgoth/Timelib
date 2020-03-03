@@ -16,6 +16,7 @@ class LinuxTimer : public Timer
 		void start();
 		void stop();
 		int get_elt();
+		void Continue();
 
 	private:
 		LinuxTimer();

@@ -12,6 +12,7 @@ class WindowsTimer : public Timer
 		void start();
 		int get_elt();
 		void stop();
+		void Continue();
 
 	private:
 		WindowsTimer();
