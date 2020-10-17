@@ -1,6 +1,12 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+struct TimePoint
+{
+	int start;
+	int time;
+};
+
 class Timer
 {
 	public:

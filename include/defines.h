@@ -5,7 +5,7 @@
 
 #define OS_Linux
 
-#elif defined(_WIN32)
+#elif defined(_WIN32) || defined(__MINGW32__)
 
 #define OS_Windows
 
