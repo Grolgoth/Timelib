@@ -1,5 +1,6 @@
 #ifndef TIMER_H
 #define TIMER_H
+#include <vector>
 
 struct TimePoint
 {
@@ -11,6 +12,7 @@ class Timer
 {
 	public:
 		static Timer* getTimer();
+		static void pauseAll();
 
 		Timer();
 		virtual ~Timer();
@@ -21,6 +23,8 @@ class Timer
 		inline bool getStopped() {return stopped;}
 	protected:
 		bool stopped;
+		static std::vector<Timer*> timers;
+		static std::vector<Timer*> paused;
 };
 
 #endif // TIMER_H
