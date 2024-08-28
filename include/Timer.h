@@ -10,9 +10,8 @@ struct TimePoint
 
 class Timer
 {
+	friend class TimerManager;
 	public:
-		static Timer* getTimer();
-		static void pauseAll();
 
 		Timer();
 		virtual ~Timer();
@@ -20,9 +19,25 @@ class Timer
 		virtual int get_elt() = 0;
 		virtual void stop() = 0;
 		virtual void Continue() = 0;
-		inline bool getStopped() {return stopped;}
 	protected:
 		bool stopped;
+};
+
+class TimerManager
+{
+	public:
+		static void pauseAll();
+
+		TimerManager();
+		~TimerManager();
+		void start() {timer->start();}
+		int get_elt() {return timer->get_elt();}
+		void stop() {timer->stop();}
+		void Continue() {timer->Continue();};
+		bool getStopped() {return timer->stopped;}
+	private:
+		Timer* timer = nullptr;
+
 		static std::vector<Timer*> timers;
 		static std::vector<Timer*> paused;
 };

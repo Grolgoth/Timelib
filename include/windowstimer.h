@@ -6,7 +6,7 @@ typedef unsigned long DWORD;
 
 class WindowsTimer : public Timer
 {
-	friend class Timer;
+	friend class TimerManager;
 	public:
 		~WindowsTimer();
 		void start();

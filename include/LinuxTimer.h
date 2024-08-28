@@ -10,7 +10,7 @@ struct timestruct
 
 class LinuxTimer : public Timer
 {
-	friend class Timer;
+	friend class TimerManager;
 	public:
 		~LinuxTimer();
 		void start();

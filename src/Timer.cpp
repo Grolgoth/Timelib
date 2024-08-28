@@ -4,22 +4,33 @@
 #include "LinuxTimer.h"
 #include <iostream>
 
-std::vector<Timer*> Timer::timers;
-std::vector<Timer*> Timer::paused;
+std::vector<Timer*> TimerManager::timers;
+std::vector<Timer*> TimerManager::paused;
 
-Timer* Timer::getTimer()
+TimerManager::TimerManager()
 {
 	#ifdef OS_Windows
-		return new WindowsTimer();
+		timer = new WindowsTimer();
 	#elif(defined(OS_Linux))
-		return new LinuxTimer();
+		timer = new LinuxTimer();
 	#endif
-	std::cerr << "Error: could not create timer. Your OS is not supported by this library." << std::endl;
-	std::cerr << "Currently only Linux and Windows_x86 are supported." << std::endl;
-	return nullptr;
+	if (timer == nullptr)
+	{
+		std::cerr << "Error: could not create timer. Your OS is not supported by this library." << std::endl;
+		std::cerr << "Currently only Linux and Windows_x86 are supported." << std::endl;
+	}
+	timers.push_back(timer);
 }
 
-void Timer::pauseAll()
+TimerManager::~TimerManager()
+{
+	for (unsigned int i = 0; i < timers.size(); i++)
+		if (timers[i] == timer)
+			timers.erase(timers.begin() + i);
+	delete timer;
+}
+
+void TimerManager::pauseAll()
 {
 	if (paused.size() == 0)
 	{
@@ -45,12 +56,9 @@ void Timer::pauseAll()
 Timer::Timer()
 {
 	stopped = true;
-	timers.push_back(this);
 }
 
 Timer::~Timer()
 {
-	for (unsigned int i = 0; i < timers.size(); i++)
-		if (timers[i] == this)
-			timers.erase(timers.begin() + i);
+
 }
