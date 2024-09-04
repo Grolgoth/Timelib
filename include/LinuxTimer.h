@@ -1,6 +1,9 @@
 #ifndef LINUXTIMER_H
 #define LINUXTIMER_H
+#include "defines.h"
 #include "Timer.h"
+
+#ifdef OS_Linux
 
 struct timestruct
 {
@@ -24,5 +27,7 @@ class LinuxTimer : public Timer
 		timestruct end;
 		timestruct getTime();
 };
+
+#endif // OS_LINUX
 
 #endif // LINUXTIMER_H

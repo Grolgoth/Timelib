@@ -1,8 +1,10 @@
 #ifndef WINDOWSTIMER_H
 #define WINDOWSTIMER_H
+#include "defines.h"
 #include "Timer.h"
 
-typedef unsigned long DWORD;
+#ifdef OS_Windows
+#include <windows.h>
 
 class WindowsTimer : public Timer
 {
@@ -19,5 +21,7 @@ class WindowsTimer : public Timer
 		DWORD begin;
 		DWORD end;
 };
+
+#endif // OS_WINDOWS
 
 #endif // WINDOWSTIMER_H

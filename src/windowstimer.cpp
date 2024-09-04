@@ -3,8 +3,6 @@
 
 #ifdef OS_Windows
 
-#include "windows.h"
-
 WindowsTimer::WindowsTimer()
 {
 	stopped = false;

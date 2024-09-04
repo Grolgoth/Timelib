@@ -1,7 +1,10 @@
 #include "Timer.h"
 #include "defines.h"
+#ifdef OS_Windows
 #include "windowstimer.h"
+#elif(defined(OS_Linux))
 #include "LinuxTimer.h"
+#endif
 #include <iostream>
 
 std::vector<Timer*> TimerManager::timers;
